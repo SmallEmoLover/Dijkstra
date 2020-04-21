@@ -10,6 +10,7 @@
 #include <locale.h>
 #include "Dijkstra.h"
 
+//контроль ввода
 int safe_input()
 {
 	int n;
@@ -28,19 +29,18 @@ int safe_input()
 	return n;
 }
 
-void main()
+int main()
 {
 	setlocale(LC_ALL, "RUS");
 
 	int size;
-
 	printf("Введите количество вершин: ");
 	size = safe_input();
 	if (size == 0)
 	{
 		printf("\nРазмер графа не может быть равен нулю\n");
 		system("pause");
-		return;
+		return 1;
 	}
 	int **graph = malloc(sizeof(int*) * size);
 	for (int i = 0; i < size; i++)
@@ -51,7 +51,6 @@ void main()
 	}
 
 	printf("Введите матрицу смежности выше главной диагонали:\n");
-
 	for (int i = 0; i < size; i++)
 	{
 		for (int j = i + 1; j < size; j++)
@@ -68,15 +67,23 @@ void main()
 	{
 		printf("\nНедопустимая вершина\n");
 		system("pause");
-		return;
+		return 1;
 	}
 
 	int **distances = Dijkstra(graph, node, size);
-
 	for (int i = 0; i < size; i++)
-		printf("Расстояние до %d-й вершины = %d\n", i + 1, distances[i]);
+	{
+		if (i == node)
+			continue;
+
+		if (distances[i] != 0)
+			printf("Расстояние до %d-й вершины = %d\n", i + 1, distances[i]);
+		else
+			printf("К вершине %d нет пути\n", i);
+	}
 
 	free(distances);
-
 	system("pause");
+
+	return 0;
 }
