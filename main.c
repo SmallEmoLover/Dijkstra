@@ -73,13 +73,13 @@ int main()
 	int **distances = Dijkstra(graph, node, size);
 	for (int i = 0; i < size; i++)
 	{
-		if (i == node)
+		if (i == node - 1)
 			continue;
 
 		if (distances[i] != 0)
 			printf("Расстояние до %d-й вершины = %d\n", i + 1, distances[i]);
 		else
-			printf("К вершине %d нет пути\n", i);
+			printf("К вершине %d нет пути\n", i + 1);
 	}
 
 	free(distances);
