@@ -1,12 +1,13 @@
-/*  Алгоритм Дейкстры
-	Кулаков Д.С.
-	ИВТ-13БО		*/
+/*  ГЂГ«ГЈГ®Г°ГЁГІГ¬ Г„ГҐГ©ГЄГ±ГІГ°Г»
+	ГЉГіГ«Г ГЄГ®Гў Г„.Г‘.
+	Г€Г‚Г’-13ГЃГЋ		*/
 
 #include <stdlib.h>
 
 int* Dijkstra(int** graph, int node, int size)
 {
 	node--;
+	//РљРѕРјРјРµРЅС‚Р°СЂРёР№ РґР»СЏ РќР°СЃС‚Рё
 	int *distance = malloc(sizeof(int) * size);
 	for (int i = 0; i < size; i++)
 		distance[i] = 0;
